@@ -22,9 +22,19 @@ module.exports = {
         loaders: 'html-loader'
       },
       {
-        test: /.css/,
+        test: /\.css$/,
         loaders: 'raw-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)@angular/,
+      './src'
+
+    )
+
+
+  ]
 };
