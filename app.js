@@ -6,9 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var appRoutes = require('./routes/app');
-// var users = require('./routes/users');
+var workflow = require('./routes/workflow'); // added
+var mongoose = require('mongoose'); // added
+var cors = require('cors'); // added
 
 var app = express();
+
+// Connecting to Mongodb
+mongoose.connect('localhost:27017');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('<<<--- connected to mongodb --->>>')
+});
+
+app.use(cors()); // Added
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +43,7 @@ app.use(function ( req, res, next ) {
 });
 
 app.use('/', appRoutes);
-// app.use('/users', users);
+app.use('/workflow', workflow);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
