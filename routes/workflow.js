@@ -3,44 +3,28 @@ var router = express.Router();
 var Workflow1 = require('../models/workflow1');
 var Workflow2 = require('../models/workflow2');
 
-/* GET users listing. */
-router.post('/names', function(req, res, next) {
-
-  console.log(req.body);
-  // Users.findOne(req.body, function (err, doc ) {
-  //   if (err) {
-  //     return res.send(err);
-  //   } else {
-  //     res.send(doc.email);
-  //   }
-  // });
-  // res.send('respond with a resource');
-});
-
-
 router.post('/form1/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡");
+  console.log("Print out the req.body before process it");
   console.log(req.body);
 
-  // var users = new Users({
-  //   firstName: req.body.ingredientName,
-  //   lastName: req.body.param2,
-  //   email: req.body.param1,
-  //   password: req.body.ingredientName
-  // });
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new Workflow1(req.body);
 
-  // console.log(users);
+  console.log("Print out the wfInput before saving it");
+  console.log(wfInput);
 
-  // users.save(function ( err, result ) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(err);
-  //   } else {
-  //     console.log(result);
-  //     res.send(result);
-  //   }
-  // });
-  res.send("Hello world!");
+  wfInput.save(function ( err, result ) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      console.log(result);
+      res.send(result);
+    }
+  });
+
+  // res.send("Hello world!");
 
 });
 
@@ -49,7 +33,7 @@ router.post('/form2/',function ( req, res, next ) {
   console.log("Print out the req.body before process it");
   console.log(req.body);
 
-  // standard way to input into mongodb
+  // Directly load the req.body into the Mongodb schema
   var wfInput = new Workflow2(req.body);
 
   console.log("Print out the wfInput before saving it");
@@ -68,5 +52,54 @@ router.post('/form2/',function ( req, res, next ) {
   // res.send("Hello world!");
 
 });
+
+/* Query route by latest record */
+router.post('/form1/query', function(req, res, next) {
+
+  console.log(req.body);
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = Workflow1;
+
+  wfInput.find({ wfFormId: req.body.wfFormId}).
+  sort('-updated').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for result");
+    if (err) {
+      console.log("An error has been throw");
+      return res.send(err);
+    } else {
+      console.log("Result found, showing the data");
+      return res.send(data);
+    }
+  });
+
+});
+
+/* Query route by latest record */
+router.post('/form1/query', function(req, res, next) {
+
+  console.log(req.body);
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = Workflow2;
+
+  wfInput.find({ wfFormId: req.body.wfFormId}).
+  sort('-updated').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for result");
+    if (err) {
+      console.log("An error has been throw");
+      return res.send(err);
+    } else {
+      console.log("Result found, showing the data");
+      return res.send(data);
+    }
+  });
+
+});
+
 
 module.exports = router;
