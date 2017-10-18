@@ -92,9 +92,14 @@ var schema = new Schema({
 
   //Staff Input section
   wfStaffOptId: {type: String},
+  wfStaffOptName: {type: String},
   wfStaffOptShift: {type: String},
   wfStaffTechId: {type: String},
+  wfStaffTechName: {type: String},
   wfStaffXrayId: {type: String},
+  wfStaffXrayName: {type: String},
+  wfStaffQCId: {type: String},
+  wfStaffQCName: {type: String},
   wfStageStatus: {type: String},
   wfQCPass: {type: String},
   wfQCPassCode: {type: String},
