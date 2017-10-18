@@ -96,11 +96,14 @@ var schema = new Schema({
   wfStaffTechId: {type: String},
   wfStaffXrayId: {type: String},
   wfStageStatus: {type: String},
-  wfFormSplit: {type: String},
   wfQCPass: {type: String},
   wfQCPassCode: {type: String},
   wfQCSignOff: {type: String},
   wfQCInputNote: {type: String},
+
+  //  Appendix
+  wfFormStatus: {type: String},
+  wfProcessStatus: {type: String},
 
   updated: { type: Date, default: Date.now }
 

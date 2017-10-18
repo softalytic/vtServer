@@ -3,7 +3,7 @@ var router = express.Router();
 var Workflow1 = require('../models/workflow1');
 var Workflow2 = require('../models/workflow2');
 
-router.post('/form1/',function ( req, res, next ) {
+router.post('/form1/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡");
   console.log("Print out the req.body before process it");
   console.log(req.body);
@@ -28,7 +28,7 @@ router.post('/form1/',function ( req, res, next ) {
 
 });
 
-router.post('/form2/',function ( req, res, next ) {
+router.post('/form2/submit/',function ( req, res, next ) {
   console.log("Hello from 成品流程卡");
   console.log("Print out the req.body before process it");
   console.log(req.body);
@@ -54,7 +54,7 @@ router.post('/form2/',function ( req, res, next ) {
 });
 
 /* Query route by latest record */
-router.post('/form1/query', function(req, res, next) {
+router.post('/form1/query/', function(req, res, next) {
 
   console.log(req.body);
 
@@ -78,7 +78,7 @@ router.post('/form1/query', function(req, res, next) {
 });
 
 /* Query route by latest record */
-router.post('/form1/query', function(req, res, next) {
+router.post('/form2/query', function(req, res, next) {
 
   console.log(req.body);
 
