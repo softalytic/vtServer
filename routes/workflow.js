@@ -3,6 +3,9 @@ var router = express.Router();
 var Workflow1 = require('../models/workflow1');
 var Workflow2 = require('../models/workflow2');
 var Workflow3 = require('../models/workflow3');
+var wf1Images = require('../models/wf1Images');
+var wf2Images = require('../models/wf2Images');
+var wf3Images = require('../models/wf3Images');
 
 router.post('/form1/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
@@ -135,6 +138,55 @@ router.post('/form3/query/', function(req, res, next) {
     }
   });
 });
+
+router.post('/form1/image/submit/',function ( req, res, next ) {
+  console.log("Hello from 裸品流程卡 Submission");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new wf1Images(req.body);
+
+  wfInput.save(function ( err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("Has loaded successfully");
+    }
+  });
+});
+
+router.post('/form2/image/submit/',function ( req, res, next ) {
+  console.log("Hello from 成品流程卡 Submission");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new wf2Images(req.body);
+
+  wfInput.save(function ( err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("Has loaded successfully");
+    }
+  });
+});
+
+router.post('/form3/image/submit/',function ( req, res, next ) {
+  console.log("Hello from 电容器流程卡 Submission");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new wf3Images(req.body);
+
+  wfInput.save(function ( err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("Has loaded successfully");
+    }
+  });
+});
+
 
 
 module.exports = router;
