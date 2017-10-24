@@ -53,7 +53,7 @@ var schema = new Schema({
   wfRMWindingTime: {type: String},
   wfRMWindingDeg: {type: String},
 
-  wfMachineId: {type: String},
+  wfOptMachineId: {type: String},
   wfShift: {type: String},
   wfInputDate: {type: String},
   wfStartTime: {type: String},
