@@ -16,6 +16,9 @@ var schema = new Schema({
   wfImgNum: {type: Number},
   wfImg: {type: String},
 
+  wfBackupStatus: {type: String, default: "0"},
+
+  // Server log timestamp
   updated: { type: Date, default: Date.now }
 
 });

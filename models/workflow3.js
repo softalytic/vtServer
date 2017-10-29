@@ -148,7 +148,10 @@ var schema = new Schema({
   //  Appendix
   wfFormStatus: {type: String},
   wfProcessStatus: {type: String},
+  wfOutputStatus: {type: String, default: "0"},
+  wfBackupStatus: {type: String, default: "0"},
 
+  // Server log timestamp
   updated: { type: Date, default: Date.now }
 
 });

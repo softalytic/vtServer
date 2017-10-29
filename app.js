@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var appRoutes = require('./routes/app');
 var workflow = require('./routes/workflow'); // added
 var mongoose = require('mongoose'); // added
@@ -32,12 +31,13 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json({limit: '50mb'})); // Added
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true})); // Added
-
+// Below standard code are commented out because of the size limit
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Below code are used to overwrite the http headers
 app.use(function ( req, res, next ) {
   res.setHeader('Access-Control-Allow-Origin',"*");
   res.setHeader('Access-Control-Allow-Headers',"Origin, X-Requested-With, Content-Type, Accept");

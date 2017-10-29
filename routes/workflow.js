@@ -1,5 +1,9 @@
+// This file handles all the workflow routing via express
 var express = require('express');
 var router = express.Router();
+
+// Below are the data schema imported for mongodb operation, can append additional schema when needed
+// Remember to update schema if there is any changes from the app
 var Workflow1 = require('../models/workflow1');
 var Workflow2 = require('../models/workflow2');
 var Workflow3 = require('../models/workflow3');
@@ -7,6 +11,7 @@ var wf1Images = require('../models/wf1Images');
 var wf2Images = require('../models/wf2Images');
 var wf3Images = require('../models/wf3Images');
 
+/* Submission route for wfForm 1, 2, 3 */
 router.post('/form1/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
   console.log("Print out the 裸品流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -70,7 +75,7 @@ router.post('/form3/submit/',function ( req, res, next ) {
   });
 });
 
-/* Query route by latest record */
+/* Query route by latest record for wfForm 1, 2, 3 */
 router.post('/form1/query/', function(req, res, next) {
   console.log("Hello from 裸品流程卡 Submission");
   console.log("Print out the 裸品流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -93,7 +98,6 @@ router.post('/form1/query/', function(req, res, next) {
   });
 });
 
-/* Query route by latest record */
 router.post('/form2/query/', function(req, res, next) {
   console.log("Hello from 成品流程卡 Submission");
   console.log("Print out the 成品流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -116,7 +120,6 @@ router.post('/form2/query/', function(req, res, next) {
   });
 });
 
-/* Query route by latest record */
 router.post('/form3/query/', function(req, res, next) {
   console.log("Hello from 电容器流程卡 Submission");
   console.log("Print out the 电容器流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -139,6 +142,7 @@ router.post('/form3/query/', function(req, res, next) {
   });
 });
 
+/* Submission route of Images for wfForm 1, 2, 3 */
 router.post('/form1/image/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
 
