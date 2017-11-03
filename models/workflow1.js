@@ -113,6 +113,8 @@ var schema = new Schema({
   wfBackupStatus: {type: String, default: "0"},
 
   // Server log timestamp
+  exported: { type: Boolean, default: false},
+  exportTs: { type: Date },
   updated: { type: Date, default: Date.now }
 
 });

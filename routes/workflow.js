@@ -191,6 +191,27 @@ router.post('/form3/image/submit/',function ( req, res, next ) {
   });
 });
 
+/* ERP query for Workflow data*/
 
+router.post('/erp/',function ( req, res, next ) {
+  console.log("Hello from ERP data query");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = Workflow1;
+
+  wfInput.find({ wfFormId: req.body.wfFormId}).
+  sort('-updated').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for result");
+    if (err) {
+      console.log("An error has been throw");
+      return res.send(err);
+    } else {
+      console.log("Result found, showing the data");
+      return res.send(data);
+    }
+  });
+});
 
 module.exports = router;
