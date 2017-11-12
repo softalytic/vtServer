@@ -56,7 +56,7 @@ var schema = new Schema({
   wfRMPlasticSerial: {type: String},
   wfRMShellSerial: {type: String},
   wfRMCoverSerial: {type: String},
-  created: { type: Date}
+  created: {type: String}
 });
 
 schema.plugin(mongooseUniqueValidator);
