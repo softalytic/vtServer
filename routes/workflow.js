@@ -200,7 +200,7 @@ router.post('/erp/',function ( req, res, next ) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = erp;
 
-  console("ERP Data request");
+  console.log("ERP Data request");
   console.log(req.body);
 
   wfInput.find({ wfFormId: req.body.wfFormId}).
