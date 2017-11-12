@@ -56,11 +56,7 @@ var schema = new Schema({
   wfRMPlasticSerial: {type: String},
   wfRMShellSerial: {type: String},
   wfRMCoverSerial: {type: String},
-  created: { type: Date},
-
-  // Server log timestamp
-  updated: { type: Date, default: Date.now }
-
+  created: { type: Date}
 });
 
 schema.plugin(mongooseUniqueValidator);

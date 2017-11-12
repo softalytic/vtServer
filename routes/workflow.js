@@ -201,7 +201,7 @@ router.post('/erp/',function ( req, res, next ) {
   var wfInput = ERPData;
 
   wfInput.find({ wfFormId: req.body.wfFormId}).
-  sort('-updated').
+  sort('-created').
   limit(1).
   exec(function ( err, data ) {
     console.log("Calling from Mongodb for result");
