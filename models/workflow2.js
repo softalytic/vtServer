@@ -82,4 +82,4 @@ var schema = new Schema({
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('Workflow2', schema);
+module.exports = mongoose.model('workflow2', schema);

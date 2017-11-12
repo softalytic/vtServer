@@ -61,4 +61,4 @@ var schema = new Schema({
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('ERPData', schema);
+module.exports = mongoose.model('erp', schema);

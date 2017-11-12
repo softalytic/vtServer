@@ -161,4 +161,4 @@ var schema = new Schema({
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('Workflow3', schema);
+module.exports = mongoose.model('workflow3', schema);
