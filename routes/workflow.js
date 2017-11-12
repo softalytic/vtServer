@@ -222,7 +222,7 @@ router.post('/erp/submit/',function ( req, res, next ) {
   console.log("Hello from ERP data submit");
 
   // Directly load the req.body into the Mongodb schema
-  var wfInput = erp;
+  var wfInput = new erp(req.body);
 
   console.log("ERP Data request");
   console.log(req.body);
