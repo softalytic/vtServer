@@ -203,7 +203,7 @@ router.post('/erp/query/',function ( req, res, next ) {
   console.log("ERP Data request");
   console.log(req.body);
 
-  wfInput.find({ wfFormId: req.body}).
+  wfInput.find({ wfFormId: req.body.wfFormId}).
   sort('-created').
   limit(1).
   exec(function ( err, data ) {
