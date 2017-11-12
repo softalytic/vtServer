@@ -194,7 +194,7 @@ router.post('/form3/image/submit/',function ( req, res, next ) {
 
 /* ERP query for Workflow data*/
 
-router.post('/erp/',function ( req, res, next ) {
+router.post('/erp/query/',function ( req, res, next ) {
   console.log("Hello from ERP data query");
 
   // Directly load the req.body into the Mongodb schema
@@ -216,6 +216,26 @@ router.post('/erp/',function ( req, res, next ) {
       return res.send(data);
     }
   });
+});
+
+router.post('/erp/submit/',function ( req, res, next ) {
+  console.log("Hello from ERP data submit");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = erp;
+
+  console.log("ERP Data request");
+  console.log(req.body);
+
+  wfInput.save(function ( err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("Has loaded successfully");
+    }
+  });
+
 });
 
 module.exports = router;
