@@ -10,6 +10,7 @@ var Workflow3 = require('../models/workflow3');
 var wf1Images = require('../models/wf1Images');
 var wf2Images = require('../models/wf2Images');
 var wf3Images = require('../models/wf3Images');
+var ERPData = require('../models/erpData');
 
 /* Submission route for wfForm 1, 2, 3 */
 router.post('/form1/submit/',function ( req, res, next ) {
@@ -197,7 +198,7 @@ router.post('/erp/',function ( req, res, next ) {
   console.log("Hello from ERP data query");
 
   // Directly load the req.body into the Mongodb schema
-  var wfInput = Workflow1;
+  var wfInput = ERPData;
 
   wfInput.find({ wfFormId: req.body.wfFormId}).
   sort('-updated').
