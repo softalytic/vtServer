@@ -1,17 +1,391 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Angular 2 Messenger</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+<html><head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+
+
+    <style>
+        #body {
+            margin: 20px auto;
+            padding: 15px;
+            box-shadow: 1px 1px 5px #888888;
+        }
+
+        .input_area {
+            float: right;
+            padding: 15px;
+        }
+
+        .input_btn {
+            display: inline-block;
+        }
+
+        .input_btn_style,
+        .output_btn_style {
+            width: 100px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: 0px;
+            line-height: 30px;
+            border: 2px solid;
+            border-radius: 7px;
+        }
+
+        .input_btn_style {
+            background-color: #ffb300;
+        }
+
+        .output_btn_style {
+            background-color: #00991E;
+        }
+
+        .input_btn_style:hover {
+            background-color: #cc8f00;
+        }
+
+        .output_btn_style:hover {
+            background-color: #006b15;
+        }
+
+        .form-group {
+            /* width: 300px; */
+            margin: 10px;
+        }
+
+        .dropdown {
+            margin: 10px;
+        }
+
+        .left,
+        .right {
+            display: inline-block;
+        }
+
+        .submit_btn {
+            width: 200px;
+        }
+    </style><script>
+    $(document).ready(function() {
+
+        var startDateField = $('input[name="start"]'); //our date input has the name "date"
+        var endDateField = $('input[name="end"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        startDateField.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+
+        endDateField.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+
+        $('#selectForm').on('change', function() {
+            var formVal = $('#selectForm option:selected').val();
+            clearFormSelect();
+            if (formVal === '1') {
+                $('#trForm1').show();
+                $('#trForm2').hide();
+                $('#trForm3').hide();
+            } else if (formVal === '2') {
+                $("#form1 select").val("0");
+                $("#form3 select").val("0");
+                $('#trForm2').show();
+                $('#trForm1').hide();
+                $('#trForm3').hide();
+            } else if (formVal === '3') {
+                $("#form1 select").val("0");
+                $("#form2 select").val("0");
+                $('#trForm3').show();
+                $('#trForm1').hide();
+                $('#trForm2').hide();
+            }
+        });
+    });
+
+    function clearFormSelect() {
+        $('#form1').val('0 selected');
+        $('#form2').val('0 selected');
+        $('#form3').val('0 selected');
+    }
+</script></head>
+
+
+
+
+
 <body>
-<my-app>Loading ...</my-app>
-<script src="/js/app/bundle.js"></script>
-</body>
-</html>
+<div id="body">
+    <div class="section">
+
+        <div class="input_area">
+            <div class="input_btn">
+                <button type="submit" class="input_btn_style">import</button>
+            </div>
+
+            <div class="input_btn">
+                <button type="submit" class="output_btn_style">export</button>
+            </div>
+        </div>
+
+
+        <form data-toggle="validator" role="form" novalidate="true">
+
+            <table>
+                <tbody><tr>
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">流程卡号:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inputName" placeholder="">
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">分單:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inputName" placeholder="Search" value="0">
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <!--
+                <tr>
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">裸品流程卡:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group dropdown">
+                                <select class="form-control" id="sel2">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            -->
+
+                <tr>
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">流程卡工序:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group dropdown">
+                                <select class="form-control" id="selectForm">
+                                    <option value="0"></option>
+                                    <option value="1">祼品流程工序</option>
+                                    <option value="2">成品流程工序</option>
+                                    <option value="3">电容器流程工序</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="trForm1" style="display:none;">
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">祼品流程工序:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group dropdown">
+                                <select class="form-control" id="form1">
+                                    <option value="0" selected=""></option>
+                                    <option value="1">釘卷</option>
+                                    <option value="2">含浸</option>
+                                    <option value="3">组立</option>
+                                    <option value="4">清洗</option>
+                                    <option value="5">自動老化</option>
+                                    <option value="6">手工老化</option>
+                                    <option value="7">串排</option>
+                                    <option value="8">测试分选</option>
+                                    <option value="9">外观</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="trForm2" style="display:none;">
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">成品流程工序:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group dropdown">
+                                <select class="form-control" id="form2">
+                                    <option value="0" selected=""></option>
+                                    <option value="1">打印</option>
+                                    <option value="2">测试上带</option>
+                                    <option value="3">贴片外观</option>
+                                    <option value="4">终检</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="trForm3" style="display:none;">
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">电容器流程工序:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group dropdown">
+                                <select class="form-control" id="form3">
+                                    <option value="0" selected=""></option>
+                                    <option value="1">素子钉卷</option>
+                                    <option value="2">烘干</option>
+                                    <option value="3">含浸</option>
+                                    <option value="4">組立</option>
+                                    <option value="5">清洗</option>
+                                    <option value="6">套管</option>
+                                    <option value="7">老化</option>
+                                    <option value="8">手工分选</option>
+                                    <option value="9">外观全检</option>
+                                    <option value="10">编带剪切</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <center>
+                            <div class="left">
+                                <div class="form-group">
+                                    <label for="inputName" class="control-label">日期:</label>
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                    <td>
+                        <div class="right">
+                            <div class="form-group">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" id="start">
+                                    <span class="input-group-addon">至</span>
+                                    <input type="text" class="input-sm form-control" name="end" id="end">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <center>
+                            <div class="form-group">
+
+                                <button type="submit" class="btn btn-primary submit_btn">尋找</button>
+
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+                </tbody></table>
+
+        </form>
+    </div>
+
+    <div id="section_2">
+        <div id="example_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="example_length"><label>Show <select name="example_length" aria-controls="example" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="example"></label></div><table id="example" class="display dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+            <thead>
+            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="1: activate to sort column descending" style="width: 73px;">1</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="2: activate to sort column ascending" style="width: 73px;">2</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="3: activate to sort column ascending" style="width: 73px;">3</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="4: activate to sort column ascending" style="width: 73px;">4</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="5: activate to sort column ascending" style="width: 74px;">5</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="6: activate to sort column ascending" style="width: 74px;">6</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="7: activate to sort column ascending" style="width: 74px;">7</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="8: activate to sort column ascending" style="width: 74px;">8</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="9: activate to sort column ascending" style="width: 74px;">9</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="10: activate to sort column ascending" style="width: 96px;">10</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="11: activate to sort column ascending" style="width: 96px;">11</th></tr>
+            </thead>
+            <tbody>
+
+            <tr role="row" class="odd">
+                <td class="sorting_1">11</td>
+                <td>10</td>
+                <td>9</td>
+                <td>8</td>
+                <td>7</td>
+                <td>6</td>
+                <td>5</td>
+                <td>4</td>
+                <td>3</td>
+                <td>2</td>
+                <td>1</td>
+            </tr></tbody>
+        </table><div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div><div class="dataTables_paginate paging_simple_numbers" id="example_paginate"><a class="paginate_button previous disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a><span><a class="paginate_button current" aria-controls="example" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="example" data-dt-idx="2" tabindex="0" id="example_next">Next</a></div></div>
+
+    </div>
+</div>
+</body></html>
+
