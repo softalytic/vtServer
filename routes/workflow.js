@@ -11,6 +11,7 @@ var wf1Images = require('../models/wf1Images');
 var wf2Images = require('../models/wf2Images');
 var wf3Images = require('../models/wf3Images');
 var erp = require('../models/erpData');
+var erpExc = require('../models/erpExcData');
 
 /* Submission route for wfForm 1, 2, 3 */
 router.post('/form1/submit/',function ( req, res, next ) {
@@ -223,6 +224,52 @@ router.post('/erp/submit/',function ( req, res, next ) {
 
   // Directly load the req.body into the Mongodb schema
   var wfInput = new erp(req.body);
+
+  console.log("ERP Data request");
+  console.log(req.body);
+
+  wfInput.save(function ( err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("Has loaded successfully");
+    }
+  });
+
+});
+
+/* ERP Abnormal query for Workflow data*/
+
+router.post('/erp/query/exc/',function ( req, res, next ) {
+  console.log("Hello from ERP data query");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = erpExc;
+
+  console.log("ERP Exception Data request");
+  console.log(req.body);
+
+  wfInput.find({ wfFormId: req.body.wfFormId}).
+  sort('-created').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for result");
+    if (err) {
+      console.log("An error has been throw");
+      return res.send(err);
+    } else {
+      console.log("Result found, showing the data");
+      return res.send(data);
+    }
+  });
+});
+
+router.post('/erp/submit/exc/',function ( req, res, next ) {
+  console.log("Hello from ERP data submit");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new erpExc(req.body);
 
   console.log("ERP Data request");
   console.log(req.body);
