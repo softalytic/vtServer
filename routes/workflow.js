@@ -85,7 +85,7 @@ router.post('/form1/query/', function(req, res, next) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = Workflow1;
 
-  wfInput.find({ wfFormId: req.body.wfFormId}).
+  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit}).
   sort('-updated').
   limit(1).
   exec(function ( err, data ) {

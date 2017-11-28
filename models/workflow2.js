@@ -9,6 +9,7 @@ var schema = new Schema({
 
   // Order Inputs detail
   wfFormId: {type: String},
+  wfFormSplit: {type: Number},
   wfOrderFormId: {type: String},
   wfOrderId: {type: String},
   wfOrderBatchId: {type: String},
@@ -27,6 +28,16 @@ var schema = new Schema({
   wfClientId: {type: String},
   wfSalesOrderId: {type: String},
 
+  wfPriorWfFormId: {type: String},
+  wfNakedProductSpec: {type: String},
+  wfSalesOrderQty: {type: Number},
+  wfSalesOrderNote: {type: String},
+  wfOrderDate: {type: String},
+  wfOrderStartDate: {type: String},
+  wfOrderEstFinishDate: {type: String},
+  wfOrderDeliveryDate: {type: String},
+  wfOrderTK: {type: String},
+
   // Raw Material Inputs
   wfRMUpBeltName: {type: String},
   wfRMUpBeltSerial: {type: String},
@@ -38,6 +49,10 @@ var schema = new Schema({
   wfRMCricleSerial: {type: String},
   wfRMPrintName: {type: String},
   wfRMPrintSerial: {type: String},
+
+  wfOptStartQty: {type: Number},
+  wfBadTotal: {type: Number},
+  wfGoodTotal: {type: Number},
 
   // Operational Input
   wfSpecCap: {type: String},
