@@ -23,6 +23,7 @@ var schema = new Schema({
   wfOrderSeries: {type: String},
   wfOrderSpec: {type: String},
   wfOrderDim: {type: String},
+
   wfClientId: {type: String},
   wfSalesOrderId: {type: String},
   wfSpecCap: {type: String},
@@ -89,42 +90,6 @@ var schema = new Schema({
   wfBadTotal: {type: Number},
   wfGoodTotal: {type: Number},
 
-  wfShift: {type: String},
-  wfInputDate: {type: String},
-  wfStartTime: {type: String},
-  wfFinishTime: {type: String},
-  wfBadQty: {type: String},
-  wfGoodQty: {type: String},
-
-  wfAgeingDegSet: {type: String},
-  wfAgeingDegAct: {type: String},
-
-  wfAgeingVoltAct1: {type: String},
-  wfAgeingVoltAct2: {type: String},
-  wfAgeingVoltAct3: {type: String},
-  wfAgeingVoltAct4: {type: String},
-  wfAgeingVoltAct5: {type: String},
-  wfAgeingVoltAct6: {type: String},
-  wfAgeingVoltAct7: {type: String},
-
-  wfAgeingVoltSet: {type: String},
-  wfAgeingVoltAct: {type: String},
-  wfAgeingCurrentSet: {type: String},
-  wfAgeingCurrentAct: {type: String},
-  wfAgeingTimeSet: {type: String},
-  wfAgeingTimeAct: {type: String},
-  wfAgeingNote: {type: String},
-
-  wfOpenVolt: {type: String},
-  wfShortVolt: {type: String},
-  wfOpen: {type: String},
-  wfShort: {type: String},
-  wfHighCapacity: {type: String},
-  wfLowCapacity: {type: String},
-  wfWear: {type: String},
-  wfVoltLeak: {type: String},
-  wfLook: {type: String},
-
   // Operational Input
   wfOptMachineId: {type: String},
   wfOptInputDate: {type: String},
@@ -180,20 +145,19 @@ var schema = new Schema({
   wfQCSignOff: {type: String},
   wfQCInputNote: {type: String},
 
-  //  Appendix
-  wfFormStatus: {type: String},
-  wfProcessStatus: {type: String},
-  wfOutputStatus: {type: String, default: "0"},
-  wfBackupStatus: {type: String, default: "0"},
+  // Appendix
+  wfFormStatus: {type: Boolean},
+  wfProcessStatus: {type: Boolean},
+  // wfOutputStatus: {type: String, default: "0"},
+  // wfBackupStatus: {type: String, default: "0"},
 
   // Server log timestamp
   exported: { type: Boolean, default: false},
   exportTs: { type: Date },
   updated: { type: Date, default: Date.now }
 
-
 });
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('workflow3', schema);
+module.exports = mongoose.model('workflow1', schema);

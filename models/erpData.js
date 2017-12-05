@@ -82,8 +82,8 @@ var schema = new Schema({
   wfOptStartQty: {type: Number},
   wfBadTotal: {type: Number},
   wfGoodTotal: {type: Number},
-  wfFormStatus: {type: Number},
-  wfProcessStatus: {type: Number},
+  wfFormStatus: {type: Boolean, default: false},
+  wfProcessStatus: {type: Boolean, default: false},
   created: {type: String}
 });
 
