@@ -9,7 +9,7 @@ var wfImages = require('../models/wfImages');
 var erp = require('../models/erpData');
 var erpExc = require('../models/erpExcData');
 
-/* Submission route for wfForm 1, 2, 3 */
+/* Submission route for wfForm*/
 router.post('/form/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
   console.log("Print out the 裸品流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -31,7 +31,7 @@ router.post('/form/submit/',function ( req, res, next ) {
   });
 });
 
-/* Query route by latest record for wfForm 1, 2, 3 */
+/* Query route by latest record for wfForm*/
 router.post('/form/query/', function(req, res, next) {
   console.log("Hello from 流程卡 Submission");
   console.log("Print out the 流程卡 Submission req.body: " + JSON.stringify(req.body));
@@ -54,8 +54,7 @@ router.post('/form/query/', function(req, res, next) {
   });
 });
 
-
-/* Submission route of Images for wfForm 1, 2, 3 */
+/* Submission route of Images for wfForm*/
 router.post('/form/image/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
 
@@ -73,7 +72,6 @@ router.post('/form/image/submit/',function ( req, res, next ) {
 });
 
 /* ERP query for Workflow data*/
-
 router.post('/erp/query/',function ( req, res, next ) {
   console.log("Hello from ERP data query");
 
@@ -119,7 +117,6 @@ router.post('/erp/submit/',function ( req, res, next ) {
 });
 
 /* ERP Abnormal query for Workflow data*/
-
 router.post('/erp/query/exc/',function ( req, res, next ) {
   console.log("Hello from ERP data query");
 
