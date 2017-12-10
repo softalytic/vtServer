@@ -8,6 +8,7 @@ var wfModel = require('../models/wfModel');
 var wfImages = require('../models/wfImages');
 var erp = require('../models/erpData');
 var erpExc = require('../models/erpExcData');
+var staff = require('../models/staffData');
 
 /* Submission route for wfForm*/
 router.post('/form/submit/',function ( req, res, next ) {
@@ -130,12 +131,12 @@ router.post('/erp/query/exc/',function ( req, res, next ) {
   sort('-created').
   limit(1).
   exec(function ( err, data ) {
-    console.log("Calling from Mongodb for result");
+    console.log("Calling from Mongodb for ERP Exc result");
     if (err) {
-      console.log("An error has been throw");
+      console.log("An error has been throw from ERP Exc");
       return res.send(err);
     } else {
-      console.log("Result found, showing the data");
+      console.log("Result found from ERP Exc, showing the data");
       return res.send(data);
     }
   });
@@ -159,6 +160,55 @@ router.post('/erp/submit/exc/',function ( req, res, next ) {
     }
   });
 
+});
+
+/* ERP Staff */
+router.post('/erp/query/staff/',function ( req, res, next ) {
+  console.log("Hello from Staff data query");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = staff;
+
+  console.log("Staff Data request");
+  console.log(req.body);
+
+  wfInput.find().
+  sort('-created').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for Staff result");
+    if (err) {
+      console.log("An error has been throw from staff");
+      return res.send(err);
+    } else {
+      console.log("Result found from Staff, showing the data");
+      return res.send(data);
+    }
+  });
+});
+
+router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
+  console.log("Hello from Staff dttm data query");
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = staff;
+
+  console.log("Staff Data dttm request");
+  console.log(req.body);
+
+  wfInput.find().
+  sort('-created').
+  limit(1).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for Staff result");
+    if (err) {
+      console.log("An error has been throw from staff");
+      return res.send(err);
+    } else {
+      console.log("Result found from Staff, showing the data");
+      return res.send(data.dttm);
+    }
+  });
 });
 
 module.exports = router;
