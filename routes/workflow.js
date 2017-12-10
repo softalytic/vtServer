@@ -194,9 +194,9 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   var wfInput = staff;
 
   console.log("Staff Data dttm request");
-  console.log(req.body.dttm);
+  console.log(req.body);
 
-  wfInput.find(req.body.dttm).
+  wfInput.find({ dttm:req.body.dttm }).
   sort('-created').
   limit(1).
   exec(function ( err, data ) {
