@@ -206,8 +206,8 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
       return res.send(err);
     } else {
       console.log("Showing where the latest ");
-      console.log(data);
-      return res.send(data);
+      console.log(data['dttm']);
+      return res.send(data['dttm']);
     }
   });
 });
