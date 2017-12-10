@@ -196,17 +196,18 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   console.log("Staff Data dttm request");
   console.log(req.body);
 
-  wfInput.find({ dttm:req.body.dttm }).
+  wfInput.find({ dttm: req.body.dttm }).
   sort('-created').
   limit(1).
   exec(function ( err, data ) {
-    console.log("Calling from Mongodb for Staff result");
+    console.log("Calling from Mongodb for checking staff result");
     if (err) {
-      console.log("An error has been throw from staff");
+      console.log("An error has been throw from checking staff data");
       return res.send(err);
     } else {
-      console.log("Result found from Staff, showing the data");
-      return res.send(data.dttm);
+      console.log("Showing where the latest ");
+      console.log(data);
+      return res.send(data);
     }
   });
 });
