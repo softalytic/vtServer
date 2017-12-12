@@ -196,7 +196,7 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   console.log("Staff Data dttm request");
   console.log(req.body);
 
-  wfInput.find({ dttm: req.body.dttm }).
+  wfInput.find({ dttm: req.body }).
   sort('-dttm').
   limit(1).
   exec(function ( err, data ) {
