@@ -173,7 +173,7 @@ router.post('/erp/query/staff/',function ( req, res, next ) {
   console.log(req.body);
 
   wfInput.find().
-  sort('-created').
+  sort('-dttm').
   limit(1).
   exec(function ( err, data ) {
     console.log("Calling from Mongodb for Staff result");
@@ -197,7 +197,7 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   console.log(req.body);
 
   wfInput.find({ dttm: req.body.dttm }).
-  sort('-created').
+  sort('-dttm').
   limit(1).
   exec(function ( err, data ) {
     console.log("Calling from Mongodb for checking staff result");
