@@ -193,8 +193,7 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = staff;
 
-  console.log("Staff Data dttm request");
-  // console.log(req.body);
+  console.log("Staff Data dttm request" + JSON.stringify(req.body));
 
   var input = "";
 
