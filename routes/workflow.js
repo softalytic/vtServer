@@ -196,7 +196,7 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
   console.log("Staff Data dttm request");
   // console.log(req.body);
 
-  var input: any;
+  var input = "";
 
   try {
     input = req.body.dttm
