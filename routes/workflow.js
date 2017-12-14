@@ -202,7 +202,7 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
     input = req.body
   }
 
-  wfInput.find({ dttm : input }).
+  wfInput.find().
   sort('-dttm').
   limit(1).
   exec(function ( err, data ) {
@@ -211,9 +211,8 @@ router.post('/erp/query/staff/dttm/',function ( req, res, next ) {
       console.log("An error has been throw from checking staff data");
       return res.send(err);
     } else {
-      console.log("Showing the latest staff");
-      console.log(data[0]["dttm"]);
-      return res.send(data[0]["dttm"]);
+      console.log("Showing the latest staff"+ JSON.stringify(data[0].dttm));
+      return res.send(data[0].dttm);
     }
   });
 });
