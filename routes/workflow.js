@@ -58,7 +58,7 @@ router.post('/form/query/', function(req, res, next) {
 /* Submission route of Images for wfForm*/
 router.post('/form/image/submit/',function ( req, res, next ) {
   console.log("Hello from 裸品流程卡 Submission");
-
+  console.log("wfImgTotal: " + req.body.wfImgTotal + "wfImgNum: " + req.body.wfImgNum);
   // Directly load the req.body into the Mongodb schema
   var wfInput = new wfImages(req.body);
 
@@ -67,6 +67,7 @@ router.post('/form/image/submit/',function ( req, res, next ) {
       console.log(err);
       res.send(err);
     } else {
+      console.log("Image has been uploaded");
       res.send("Has loaded successfully");
     }
   });
