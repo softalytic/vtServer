@@ -72,6 +72,28 @@ router.post('/form/image/submit/',function ( req, res, next ) {
   });
 });
 
+router.post('/form/image/query/',function ( req, res, next ) {
+  console.log("Hello from 流程卡 image query");
+  console.log("Print out the 流程卡 image query req.body: " + JSON.stringify(req.body));
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = new wfImages(req.body);
+
+  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit}).
+  sort('-updated').
+  limit(10).
+  exec(function ( err, data ) {
+    console.log("Calling from Mongodb for result");
+    if (err) {
+      console.log("An error has been throw");
+      return res.send(err);
+    } else {
+      console.log("Result found, showing the data");
+      return res.send(data);
+    }
+  });
+});
+
 /* ERP query for Workflow data*/
 router.post('/erp/query/',function ( req, res, next ) {
   console.log("Hello from ERP data query");

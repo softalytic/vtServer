@@ -25,4 +25,4 @@ var schema = new Schema({
 
 schema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('wf1Images', schema);
+module.exports = mongoose.model('wfImages', schema);
