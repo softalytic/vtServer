@@ -14,7 +14,7 @@ var schema = new Schema({
 
   wfImgTotal: {type: Number},
   wfImgNum: {type: Number},
-  wfImg: {type: String},
+  wfImg: {type: Array},
 
   wfBackupStatus: {type: String, default: "0"},
 
