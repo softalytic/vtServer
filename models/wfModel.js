@@ -143,7 +143,6 @@ var schema = new Schema({
   wfStaffOptShift: {type: String},
   wfStaffLeadName: {type: String},
   wfStaffLeadId: {type: String},
-  wfStaffRepairName: {type: String},
   wfStaffTechId: {type: String},
   wfStaffTechName: {type: String},
   wfStaffXrayId: {type: String},
