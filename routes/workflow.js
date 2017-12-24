@@ -78,7 +78,7 @@ router.post('/form/image/query/',function ( req, res, next ) {
   console.log("Print out the 流程卡 image query req.body: " + JSON.stringify(req.body));
 
   // Directly load the req.body into the Mongodb schema
-  var wfInput = new wfImages(req.body);
+  var wfInput = wfImages;
 
   wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit, wfProcess: req.body.wfProcess, wfStaffOptShift: req.body.wfStaffOptShift}).
   sort('-updated').
