@@ -6,11 +6,6 @@ var schema = new Schema({
   wfProcess: {type: Number},
   wfProcessName: {type: String},
   wfFormName: {type: String},
-
-  // Order Inputs detail
-  wfProcess :  {type: String},
-  wfProcessName :  {type: String},
-  wfFormName :  {type: String},
   wfForm: {type: String},
   wfFormId :  {type: String},
   wfFormSplit :  {type: String},
@@ -29,8 +24,9 @@ var schema = new Schema({
   wfStaffQCName :  {type: String},
   wfImg: {type: Array},
 
-  wfBackupStatus: {type: String, default: "0"},
-
+  // Server Mgmt tag
+  backup: { type: Boolean, default: false},
+  backupTs: { type: Date },
   // Server log timestamp
   updated: { type: Date, default: Date.now }
 

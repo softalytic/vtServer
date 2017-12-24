@@ -80,16 +80,16 @@ router.post('/form/image/query/',function ( req, res, next ) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = new wfImages(req.body);
 
-  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit}).
+  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit, wfProcess: req.body.wfProcess, wfStaffOptShift: req.body.wfStaffOptShift}).
   sort('-updated').
   limit(10).
   exec(function ( err, data ) {
-    console.log("Calling from Mongodb for result");
+    console.log("pullImages: Calling from Mongodb for result");
     if (err) {
-      console.log("An error has been throw");
+      console.log("pullImages: An error has been throw");
       return res.send(err);
     } else {
-      console.log("Result found, showing the data");
+      console.log("pullImages: Result found, showing the data");
       return res.send(data);
     }
   });
