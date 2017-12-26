@@ -5,10 +5,12 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
 var schema = new Schema({
   wfProcess: {type: Number},
   wfProcessName: {type: String},
+  wfProcessStatus: {type: Boolean},
   wfFormName: {type: String},
   wfForm: {type: String},
   wfFormId :  {type: String},
   wfFormSplit :  {type: String},
+  wfFormStatus: {type: Boolean},
   wfOrderFormId :  {type: String},
   wfOrderId :  {type: String},
   wfStaffOptId :  {type: String},
