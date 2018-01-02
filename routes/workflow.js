@@ -62,9 +62,9 @@ router.post('/form/image/submit/',function ( req, res, next ) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = new wfImages(req.body);
 
-  wfInput.save(function ( err) {
+  wfInput.save(function ( err, data) {
     if (err) {
-      console.log(err,data);
+      console.log(err);
       res.send(err);
     } else {
       console.log("Image has been uploaded");
