@@ -64,11 +64,11 @@ router.post('/form/image/submit/',function ( req, res, next ) {
 
   wfInput.save(function ( err) {
     if (err) {
-      console.log(err);
+      console.log(err,data);
       res.send(err);
     } else {
       console.log("Image has been uploaded");
-      res.send("Has loaded successfully");
+      res.send(data);
     }
   });
 });
