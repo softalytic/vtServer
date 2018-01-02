@@ -68,7 +68,8 @@ router.post('/form/image/submit/',function ( req, res, next ) {
       res.send(err);
     } else {
       console.log("Image has been uploaded");
-      res.send(data);
+      var packet = JSON.parse('{"wfFormId":"' + data.wfFormId + '"}');
+      res.send(packet);
     }
   });
 });
