@@ -40,10 +40,10 @@ router.post('/form/query/', function(req, res, next) {
   // Directly load the req.body into the Mongodb schema
   var wfInput = wfModel;
 
-  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit}).
-  sort('-updated').
-  limit(1).
-  exec(function ( err, data ) {
+  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit})
+    .sort('-updated')
+    .limit(1)
+    .exec(function ( err, data ) {
     console.log("Calling from Mongodb for result");
     if (err) {
       console.log("An error has been throw");
@@ -53,6 +53,28 @@ router.post('/form/query/', function(req, res, next) {
       return res.send(data);
     }
   });
+});
+
+router.post('/form/readonly/', function(req, res, next) {
+  console.log("Hello from 流程卡 Readonly");
+  console.log("Print out the 流程卡 readonly req.body: " + JSON.stringify(req.body));
+
+  // Directly load the req.body into the Mongodb schema
+  var wfInput = wfModel;
+
+  wfInput.find({ wfFormId: req.body.wfFormId , wfFormSplit: req.body.wfFormSplit, wfStaffOptShift: req.body.wfStaffOptShift})
+    .sort('-updated')
+    .limit(1)
+    .exec(function ( err, data ) {
+      console.log("Calling from Mongodb for result");
+      if (err) {
+        console.log("An error has been throw");
+        return res.send(err);
+      } else {
+        console.log("Result found, showing the data");
+        return res.send(data);
+      }
+    });
 });
 
 /* Submission route of Images for wfForm*/
@@ -68,6 +90,7 @@ router.post('/form/image/submit/',function ( req, res, next ) {
       res.send(err);
     } else {
       console.log("Image has been uploaded");
+      var packet = JSON.parse('{"wfFormId":"' + data.wfFormId + '"}');
       res.send("Has loaded successfully");
     }
   });
