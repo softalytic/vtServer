@@ -30,7 +30,7 @@ var schema = new Schema({
   wfOrderFormNote: {type: String},
   wfOrderNote: {type: String},
   wfOrderBOMNote: {type: String},
-  wfSalesOrderNote: {type: String},
+  wfSalesOrderId: {type: String},
   wfOrderDate: {type: String},
   wfOrderStartDate: {type: String},
   wfOrderEstFinishDate: {type: String},
