@@ -113,6 +113,7 @@ var schema = new Schema({
   wfOptBadQtyItem: {type: String},
   wfOptBadQty: {type: String},
   wfOptGoodQty: {type: String},
+  wfOptGoodQty2: {type: String},
   wfBadItem1: {type: String},
   wfBadQty1: {type: String},
   wfBadItem2: {type: String},
